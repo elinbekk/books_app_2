@@ -6,6 +6,7 @@ import ru.itis.semester_work3.entity.enums.Role;
 import ru.itis.semester_work3.entity.enums.State;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,7 +25,6 @@ public class UserEntity {
     private String lastName;
     private String middleName;
     private String username;
-    //private Date birthDate;
     private String city;
     private String password;
 
@@ -44,8 +44,7 @@ public class UserEntity {
         return this.state == State.BLOCKED;
     }
 
-    /*public boolean isAdmin() {
-        return this.role == Role.ADMIN;
-    }*/
-
+    @OneToMany(mappedBy = "books")
+    @JoinColumn(name = "userId")
+    private List<BookEntity> books;
 }

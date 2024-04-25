@@ -22,13 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(UserDto userDto){
-
         UserEntity newUser = UserEntity.builder()
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .middleName(userDto.getMiddleName())
                 .username(userDto.getUsername())
-                //.birthDate(userDto.getBirthday())
                 .city(userDto.getCity())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .roles(Collections.singleton(Role.USER))

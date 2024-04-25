@@ -1,2 +1,16 @@
-package ru.itis.semester_work3.services;public interface BooksService {
+package ru.itis.semester_work3.services;
+
+import ru.itis.semester_work3.dto.BookDto;
+import ru.itis.semester_work3.entity.BookEntity;
+
+import java.awt.print.Book;
+import java.util.List;
+import java.util.UUID;
+
+public interface BooksService {
+    void saveBook(BookDto book);
+    List<BookDto> getAllBooks();
+    BookDto getBookById(UUID id);
+    void deleteBookById(UUID id);
+    List<BookDto> getBooksByUserId(UUID userId);
 }

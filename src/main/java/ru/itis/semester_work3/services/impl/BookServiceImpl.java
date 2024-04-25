@@ -1,2 +1,71 @@
-package ru.itis.semester_work3.services.impl;public class BookServiceImpl {
+package ru.itis.semester_work3.services.impl;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.itis.semester_work3.dto.BookDto;
+import ru.itis.semester_work3.entity.BookEntity;
+import ru.itis.semester_work3.entity.UserEntity;
+import ru.itis.semester_work3.repo.BookRepository;
+import ru.itis.semester_work3.repo.UserRepository;
+import ru.itis.semester_work3.services.BooksService;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+@RequiredArgsConstructor
+public class BookServiceImpl implements BooksService {
+    private final BookRepository bookRepository;
+    private final UserRepository userRepository;
+
+    @Override
+    public void saveBook(BookDto bookDto) {
+        BookEntity newBook = BookEntity.builder()
+                .bookId(bookDto.getBookId())
+                .author(bookDto.getAuthor())
+                .title(bookDto.getTitle())
+                .build();
+        bookRepository.save(newBook);
+    }
+
+    @Override
+    public List<BookDto> getAllBooks() {
+        List<BookDto> allBooks =  bookRepository.findAll().stream().map(
+                it -> BookDto.builder()
+                        .bookId(it.getBookId())
+                        .title(it.getTitle())
+                        .author(it.getAuthor())
+                        .ownerId(it.getOwner().getUserId())
+                        .build()).toList();
+        return allBooks;
+    }
+
+    @Override
+    public BookDto getBookById(UUID id) {
+        return null;
+    }
+
+    @Override
+    public void deleteBookById(UUID id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<BookDto> getBooksByUserId(UUID userId) {
+        UserEntity userEntity = userRepository.findById(userId).orElse(null);
+        List<BookDto> userBooks = new ArrayList<>();
+        if (userEntity != null) {
+            userBooks = bookRepository
+                    .findBookEntitiesByOwner(userEntity)
+                    .stream()
+                    .map(it -> BookDto.builder()
+                            .bookId(it.getBookId())
+                            .title(it.getTitle())
+                            .author(it.getAuthor())
+                            .build()).toList();
+        }
+        return userBooks;
+    }
+
 }
