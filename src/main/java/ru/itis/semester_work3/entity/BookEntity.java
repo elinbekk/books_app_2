@@ -1,18 +1,16 @@
 package ru.itis.semester_work3.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
 @Table(name = "books")
 public class BookEntity {
     @Id

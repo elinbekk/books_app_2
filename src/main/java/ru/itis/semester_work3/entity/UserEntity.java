@@ -44,7 +44,7 @@ public class UserEntity {
         return this.state == State.BLOCKED;
     }
 
-    @OneToMany(mappedBy = "books")
-    @JoinColumn(name = "userId")
+    @OneToMany()
+    @JoinColumn(name = "user_id")
     private List<BookEntity> books;
 }

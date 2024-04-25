@@ -19,12 +19,15 @@ public class BookServiceImpl implements BooksService {
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
 
+    //todo: add book photos saving
     @Override
     public void saveBook(BookDto bookDto) {
+        UserEntity owner = userRepository.findById(bookDto.getOwnerId()).orElseThrow(() -> new IllegalArgumentException("Пользователь не найден"));
+
         BookEntity newBook = BookEntity.builder()
-                .bookId(bookDto.getBookId())
                 .author(bookDto.getAuthor())
                 .title(bookDto.getTitle())
+                .owner(owner)
                 .build();
         bookRepository.save(newBook);
     }
