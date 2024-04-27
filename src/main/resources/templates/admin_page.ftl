@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>адм page</title>
+    <link rel="stylesheet" href="../css/adm_page.css">
 </head>
 <body>
 <h1>адм</h1>

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>auth</title>
+    <link rel="stylesheet" type="text/css" href="../css/auth_page.css">
 </head>
 <body>
 <div>

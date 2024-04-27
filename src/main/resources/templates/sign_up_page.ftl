@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>sign up</title>
+    <link rel="stylesheet" href="../css/sign_up_page.css">
 </head>
 <body>
 <h2>User Registration Form</h2>
@@ -20,8 +21,6 @@
         <label for="middleName">Middle Name:</label><br>
         <input type="text" id="middleName" name="middleName"><br><br>
 
-<#--        <label for="birthday">Birthday:</label><br>-->
-<#--        <input type="date" id="birthday" name="birthday" required><br><br>-->
 
         <label for="city">City:</label><br>
         <input type="text" id="city" name="city" required><br><br>
