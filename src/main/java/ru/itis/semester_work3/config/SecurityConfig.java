@@ -22,7 +22,7 @@ import ru.itis.semester_work3.security.UserDetailsServiceImpl;
 
 import java.util.Collections;
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity()
 @Configuration
 @RequiredArgsConstructor
 //@EnableMethodSecurity(prePostEnabled = true)
