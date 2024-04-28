@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>sign up</title>
-    <link rel="stylesheet" href="../css/sign_up_page.css">
+    <link rel="stylesheet" href="/css/sign_up.css">
 </head>
 <body>
-<h2>User Registration Form</h2>
 <div>
     <#if message??>
         <p>${message}</p>

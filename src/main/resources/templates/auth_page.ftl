@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>auth</title>
-    <link rel="stylesheet" type="text/css" href="../css/auth_page.css">
+    <link rel="stylesheet" href="/css/auth_page_style.css">
 </head>
 <body>
 <div>
     <#if message??>
         <p>${message}</p>
     </#if>
-    <form action="/auth" method="POST">
+    <form method="POST" action="login">
         <label for="username">Email:</label><br>
         <input type="text" id="username" name="username" required><br><br>
 

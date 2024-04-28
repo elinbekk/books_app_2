@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>main page</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-
 <div>
-    <h1>Это главная страница</h1>
+    <h1>Boooooks</h1>
     <h2>Hello, ${user.getUserEntity().firstName}</h2>
     <a href="adm"> adm</a>
     <a href="/add_book">добавить книгу</a>
@@ -19,6 +19,8 @@
             </div>
         </#list>
     </#if>
+</div>
+<div>
     <form action="/logout" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
