@@ -18,7 +18,7 @@ public class BookEntity {
     private UUID bookId;
     private String title;
     private String author;
-
+    private  String bookPhotoUrl;
     @ManyToOne
     private UserEntity owner;
 }

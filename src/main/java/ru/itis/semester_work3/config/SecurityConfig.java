@@ -2,7 +2,6 @@
 package ru.itis.semester_work3.config;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,7 +50,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/sign-up", "auth-error").permitAll()
+                        .requestMatchers("/sign-up", "auth-error", "/css/**").permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
                 .formLogin((form) -> form
@@ -59,7 +58,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/main")
                         .failureUrl("/auth-error")
                         .permitAll())
-                .logout(LogoutConfigurer::permitAll)
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/auth?logout")
+                        .deleteCookies("JSESSIONID")
+                        .permitAll())
                 .authenticationManager(authenticationManager());
         return http.build();
     }

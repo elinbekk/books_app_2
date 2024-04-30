@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>book adding page</title>
+    <link rel="stylesheet" href="/css/my_books.css">
 </head>
 <body>
 <h1> твои книги</h1>

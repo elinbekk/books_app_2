@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>auth</title>
-    <link rel="stylesheet" type="text/css" href="../css/auth_page.css">
+  <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
 <div>

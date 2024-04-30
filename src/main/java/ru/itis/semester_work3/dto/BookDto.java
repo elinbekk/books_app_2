@@ -14,5 +14,5 @@ public class BookDto {
     private String title;
     private String author;
     private UUID ownerId;
+    private String photoUrl;
 }
-//todo: add book photos

@@ -27,6 +27,7 @@ public class BookServiceImpl implements BooksService {
         BookEntity newBook = BookEntity.builder()
                 .author(bookDto.getAuthor())
                 .title(bookDto.getTitle())
+                .bookPhotoUrl(bookDto.getPhotoUrl())
                 .owner(owner)
                 .build();
         bookRepository.save(newBook);
@@ -39,6 +40,7 @@ public class BookServiceImpl implements BooksService {
                         .bookId(it.getBookId())
                         .title(it.getTitle())
                         .author(it.getAuthor())
+                        .photoUrl(it.getBookPhotoUrl())
                         .ownerId(it.getOwner().getUserId())
                         .build()).toList();
         return allBooks;
@@ -66,6 +68,7 @@ public class BookServiceImpl implements BooksService {
                             .bookId(it.getBookId())
                             .title(it.getTitle())
                             .author(it.getAuthor())
+                            .photoUrl(it.getBookPhotoUrl())
                             .build()).toList();
         }
         return userBooks;
