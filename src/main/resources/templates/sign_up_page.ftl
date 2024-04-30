@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/css/sign_up.css">
 </head>
 <body>
-<h2>User Registration Form</h2>
 <div>
     <#if message??>
         <p>${message}</p>

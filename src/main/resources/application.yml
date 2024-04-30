@@ -11,7 +11,7 @@ spring:
     content-type: text/html
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/books_app
     username: postgres
     password: postgres
   jpa:
@@ -20,6 +20,7 @@ spring:
         dialect:  org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+<<<<<<< HEAD
 
   servlet:
     multipart:
@@ -33,3 +34,10 @@ spring:
 #    org:
 #      springframework:
 #        security: TRACE
+=======
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+>>>>>>> main

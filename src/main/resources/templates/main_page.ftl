@@ -7,9 +7,9 @@
 <#--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 </head>
 <body>
-
 <div>
-    <h1>Boooks</h1>
+    <h1>Boooooks</h1>
+    <h2>Hello, ${user.getUserEntity().firstName}</h2>
     <a href="adm"> adm</a>
     <a href="/add_book">добавить книгу</a>
     <a href="/my_books">Посмотреть мои книги для обмена</a>
@@ -27,6 +27,8 @@
             </div>
         </#list>
     </#if>
+</div>
+<div>
     <form action="/logout" method="post">
         <input type="submit" value="Sign Out"/>
     </form>

@@ -11,6 +11,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,10 +21,10 @@ import ru.itis.semester_work3.security.UserDetailsServiceImpl;
 
 import java.util.Collections;
 
-@EnableWebSecurity
+@EnableWebSecurity()
 @Configuration
 @RequiredArgsConstructor
-@EnableMethodSecurity(prePostEnabled = true)
+//@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -45,24 +46,34 @@ public class SecurityConfig {
         return new ProviderManager(Collections.singletonList(authenticationProvider()));
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
+<<<<<<< HEAD
                         .requestMatchers("/sign-up", "auth-error", "/css/**").permitAll()
+=======
+                        .requestMatchers( "/sign-up", "/css/**").permitAll()
+>>>>>>> main
                         .anyRequest().authenticated())
-                .authenticationProvider(authenticationProvider())
+                //.authenticationProvider(authenticationProvider())
                 .formLogin((form) -> form
-                        .loginPage("/auth")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/main")
-                        .failureUrl("/auth-error")
+                        .failureUrl("/login-error")
                         .permitAll())
+<<<<<<< HEAD
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/auth?logout")
                         .deleteCookies("JSESSIONID")
                         .permitAll())
                 .authenticationManager(authenticationManager());
+=======
+                .logout(LogoutConfigurer::permitAll);
+                //.authenticationManager(authenticationManager());
+>>>>>>> main
         return http.build();
     }
 }

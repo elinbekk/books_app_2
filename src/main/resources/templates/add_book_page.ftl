@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>book adding page</title>
-<#--    <link rel="stylesheet" href="/css/add_book.css">-->
+    <link rel="stylesheet" href="/css/add_book.css">
 </head>
 <body>
 <h1>добавление книги</h1>
