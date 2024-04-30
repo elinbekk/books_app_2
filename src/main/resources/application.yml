@@ -11,7 +11,7 @@ spring:
     content-type: text/html
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/books_app
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
   jpa:
@@ -20,24 +20,8 @@ spring:
         dialect:  org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-<<<<<<< HEAD
-
-  servlet:
-    multipart:
-      max-request-size:
-        100MB
-      max-file-size:
-        10MB
-
 #logging:
 #  level:
 #    org:
 #      springframework:
 #        security: TRACE
-=======
-logging:
-  level:
-    org:
-      springframework:
-        security: TRACE
->>>>>>> main

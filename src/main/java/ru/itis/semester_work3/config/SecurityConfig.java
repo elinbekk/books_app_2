@@ -52,28 +52,19 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-<<<<<<< HEAD
                         .requestMatchers("/sign-up", "auth-error", "/css/**").permitAll()
-=======
-                        .requestMatchers( "/sign-up", "/css/**").permitAll()
->>>>>>> main
                         .anyRequest().authenticated())
                 //.authenticationProvider(authenticationProvider())
                 .formLogin((form) -> form
-                        .loginPage("/login")
+                        .loginPage("/auth")
                         .defaultSuccessUrl("/main")
-                        .failureUrl("/login-error")
+                        .failureUrl("/auth-error")
                         .permitAll())
-<<<<<<< HEAD
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/auth?logout")
                         .deleteCookies("JSESSIONID")
                         .permitAll())
                 .authenticationManager(authenticationManager());
-=======
-                .logout(LogoutConfigurer::permitAll);
-                //.authenticationManager(authenticationManager());
->>>>>>> main
         return http.build();
     }
 }
