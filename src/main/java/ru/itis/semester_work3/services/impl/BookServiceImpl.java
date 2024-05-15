@@ -11,6 +11,7 @@ import ru.itis.semester_work3.services.BooksService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,7 +20,6 @@ public class BookServiceImpl implements BooksService {
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
 
-    //todo: add book photos saving
     @Override
     public void saveBook(BookDto bookDto) {
         UserEntity owner = userRepository.findById(bookDto.getOwnerId()).orElseThrow(() -> new IllegalArgumentException("Пользователь не найден"));
@@ -47,8 +47,19 @@ public class BookServiceImpl implements BooksService {
     }
 
     @Override
-    public BookDto getBookById(UUID id) {
-        return null;
+    public Optional<BookEntity> getBookById(UUID id) {
+        return bookRepository.findById(id);
+    }
+
+    @Override
+    public BookDto getBookDtoById(UUID id) {
+        BookEntity bookEntity = bookRepository.findById(id).orElseThrow(null);
+        BookDto book = BookDto.builder()
+                .author(bookEntity.getAuthor())
+                .title(bookEntity.getTitle())
+                .photoUrl(bookEntity.getBookPhotoUrl())
+                .build();
+        return book;
     }
 
     @Override

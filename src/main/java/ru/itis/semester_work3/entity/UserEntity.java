@@ -47,4 +47,7 @@ public class UserEntity {
     @OneToMany()
     @JoinColumn(name = "user_id")
     private List<BookEntity> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<FavouriteEntity> favourites;
 }

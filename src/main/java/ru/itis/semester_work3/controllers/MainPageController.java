@@ -1,17 +1,19 @@
 package ru.itis.semester_work3.controllers;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import netscape.javascript.JSObject;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.itis.semester_work3.dto.BookDto;
+import ru.itis.semester_work3.dto.FavouriteDto;
 import ru.itis.semester_work3.security.UserDetailsImpl;
 import ru.itis.semester_work3.services.impl.BookServiceImpl;
+import ru.itis.semester_work3.services.impl.FavouriteServiceImpl;
 
-import java.awt.print.Book;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,8 +24,7 @@ public class MainPageController {
 
     @GetMapping("/main")
     public String showMainPage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        List<BookDto> books;
-        books = bookService.getAllBooks();
+        List<BookDto> books = bookService.getAllBooks();
         model.addAttribute("books", books);
         model.addAttribute("user", user);
         return "main_page";
@@ -42,4 +43,6 @@ public class MainPageController {
         }
         return books;
     }
+
+
 }

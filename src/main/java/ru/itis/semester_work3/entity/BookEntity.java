@@ -3,6 +3,7 @@ package ru.itis.semester_work3.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,4 +22,7 @@ public class BookEntity {
     private  String bookPhotoUrl;
     @ManyToOne
     private UserEntity owner;
+
+    @OneToMany(mappedBy = "book")
+    private List<FavouriteEntity> favourites;
 }

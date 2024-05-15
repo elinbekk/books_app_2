@@ -13,6 +13,7 @@ import ru.itis.semester_work3.services.UserService;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService {
 
     public boolean isUserExists(String email) {
         return userRepository.existsByUsername(email);
+    }
+
+    @Override
+    public Optional<UserEntity> findUserByUserId(UUID userId) {
+        return userRepository.findUserByUserId(userId);
     }
 
     @Override

@@ -11,8 +11,7 @@
     <h1>Boooooks</h1>
     <div>
         <label for="query"></label>
-        <input type="text" id="query" placeholder="Введите название книги">
-        <button onclick="searchBooks()">Искать</button>
+        <input class="query" id="query" placeholder="Введите название книги" oninput="searchBooks() "/>
         <div id="result-block"></div>
     </div>
 
@@ -20,15 +19,18 @@
     <a href="adm"> adm</a>
     <a href="/add_book">добавить книгу</a>
     <a href="/my_books">Посмотреть мои книги для обмена</a>
+    <a href="/favourite">Избранное</a>
 
-    <#if books??>
-        <#list books as item>
-            <div>
-                <p>${item.author} "${item.title}"</p>
-                <p>${item.bookId}</p>
-            </div>
-        </#list>
-    </#if>
+     <#if books??>
+         <#list books as item>
+             <div>
+                 <p>${item.author} "${item.title}"</p>
+                 <button class="button-like" value="${item.bookId}">
+                     <i class="heart"></i>
+                 </button>
+             </div>
+         </#list>
+     </#if>
 </div>
 <div>
     <form action="/logout" method="post">
@@ -38,36 +40,42 @@
 
 <script>
     function searchBooks() {
-        var query = $("#query").val();
-
-        // AJAX request using jQuery
+        let query = $("#query").val();
         $.ajax({
             url: "/main-search",
             type: "POST",
-            data: { query: query },
+            data: {query: query},
             dataType: "json",
             success: function (books) {
                 updateBooks(books);
             },
-            error: function (xhr, status, error) {
-                console.error("Error:", status, error);
-            }
         });
     }
 
     function updateBooks(books) {
-        var resultBlock = $("#result-block");
-        resultBlock.empty(); // Clear previous results
+        let resultBlock = $("#result-block");
+        resultBlock.empty();
 
-        // Append new results
         books.forEach(function (book) {
-            var div = $("<div>");
-            var p1 = $("<p>").text(book.author + ' "' + book.title + '"');
-            var p2 = $("<p>").text(book.bookId);
-            div.append(p1).append(p2);
-            resultBlock.append(div);
+            resultBlock.append('<div class=book__card">'
+                + '<p>' + book.title + ' ' + book.author + '<p>' + '</div>');
+
         });
     }
+    $(".button-like").on('click', function () {
+        let bookId = $(this).val();
+        console.log(bookId)
+        $.ajax({
+            type: "POST",
+            url: "/main",
+            data: {"bookId": bookId},
+            success: function (result) {
+                console.log(result);
+            },
+            dataType: "text/plain"
+        });
+        $(this).style.backgroundColor = '#ff0000';
+    });
 </script>
 
 </body>
