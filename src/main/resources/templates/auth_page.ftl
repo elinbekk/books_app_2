@@ -10,7 +10,7 @@
     <#if message??>
         <p>${message}</p>
     </#if>
-    <form method="POST" action="login">
+    <form method="POST" action="auth">
         <label for="username">Email:</label><br>
         <input type="text" id="username" name="username" required><br><br>
 

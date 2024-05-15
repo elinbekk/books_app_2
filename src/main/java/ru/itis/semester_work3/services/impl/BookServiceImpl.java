@@ -74,4 +74,44 @@ public class BookServiceImpl implements BooksService {
         return userBooks;
     }
 
+    @Override
+    public List<BookDto> getBooksByTitle(String title) {
+        List<BookDto> books =  bookRepository.findBookEntitiesByTitle(title).stream().map(
+                it -> BookDto.builder()
+                        .bookId(it.getBookId())
+                        .title(it.getTitle())
+                        .author(it.getAuthor())
+                        .photoUrl(it.getBookPhotoUrl())
+                        .ownerId(it.getOwner().getUserId())
+                        .build()).toList();
+        return books;
+    }
+
+    @Override
+    public List<BookDto> getBooksByAuthor(String author) {
+        List<BookDto> books =  bookRepository.findBookEntitiesByAuthor(author).stream().map(
+                it -> BookDto.builder()
+                        .bookId(it.getBookId())
+                        .title(it.getTitle())
+                        .author(it.getAuthor())
+                        .photoUrl(it.getBookPhotoUrl())
+                        .ownerId(it.getOwner().getUserId())
+                        .build()).toList();
+        return books;
+    }
+
+    @Override
+    public List<BookDto> getBookByTitleContaining(String title) {
+        List<BookDto> books =  bookRepository.findBookEntitiesByTitleContainsIgnoreCase(title).stream().map(
+                it -> BookDto.builder()
+                        .bookId(it.getBookId())
+                        .title(it.getTitle())
+                        .author(it.getAuthor())
+                        .photoUrl(it.getBookPhotoUrl())
+                        .ownerId(it.getOwner().getUserId())
+                        .build()).toList();
+        return books;
+    }
+
+
 }

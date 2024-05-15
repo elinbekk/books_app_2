@@ -13,4 +13,7 @@ public interface BooksService {
     BookDto getBookById(UUID id);
     void deleteBookById(UUID id);
     List<BookDto> getBooksByUserId(UUID userId);
+    List<BookDto> getBooksByTitle(String title);
+    List<BookDto> getBooksByAuthor(String author);
+    List<BookDto> getBookByTitleContaining(String title);
 }
