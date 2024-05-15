@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>main page</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div>
@@ -37,39 +38,34 @@
 
 <script>
     function searchBooks() {
-        var query = document.getElementById("query").value;
+        var query = $("#query").val();
 
-        // AJAX request
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/main-search", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var books = JSON.parse(xhr.responseText);
-                    updateBooks(books);
-                } else {
-                    console.error("Error:", xhr.status);
-                }
+        // AJAX request using jQuery
+        $.ajax({
+            url: "/main-search",
+            type: "POST",
+            data: { query: query },
+            dataType: "json",
+            success: function (books) {
+                updateBooks(books);
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", status, error);
             }
-        };
-        xhr.send("query=" + encodeURIComponent(query));
+        });
     }
 
     function updateBooks(books) {
-        var resultBlock = document.getElementById("result-block");
-        resultBlock.innerHTML = ""; // Clear previous results
+        var resultBlock = $("#result-block");
+        resultBlock.empty(); // Clear previous results
 
         // Append new results
         books.forEach(function (book) {
-            var div = document.createElement("div");
-            var p1 = document.createElement("p");
-            p1.textContent = book.author + ' "' + book.title + '"';
-            var p2 = document.createElement("p");
-            p2.textContent = book.bookId;
-            div.appendChild(p1);
-            div.appendChild(p2);
-            resultBlock.appendChild(div);
+            var div = $("<div>");
+            var p1 = $("<p>").text(book.author + ' "' + book.title + '"');
+            var p2 = $("<p>").text(book.bookId);
+            div.append(p1).append(p2);
+            resultBlock.append(div);
         });
     }
 </script>
